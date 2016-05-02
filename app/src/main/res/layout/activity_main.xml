@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.twh5257_jdm5908_zsw5029_ick5008_bw.ist402.so_texter.MainActivity"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitStart"
+        android:adjustViewBounds="true"
+        android:id="@+id/bannerImg"
+        android:src="@drawable/banner2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#ffffff"
+        android:minHeight="40dp" />
+
+    <TabHost
+        android:id="@+id/tabHost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--          TAB 1 CONTENT                   -->
+                <RelativeLayout
+                    android:id="@+id/tab1"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffc916"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/u2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#FF6363"
+                        android:orientation="vertical"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dialogLine1"
+                        android:id="@+id/tab1_textview1"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center_vertical|right"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/u3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#609000"
+                        android:orientation="vertical"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/u2"
+                        android:layout_alignParentEnd="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dialogLine2"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/morningDialog_TextView" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dialogLine3"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/nightDialog_TextView" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dialogLine4"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/randomDialog_TextView" />
+              <!--          <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dialogLine5"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/importantDialog_TextView" />-->
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/dialogLine6"
+                        android:id="@+id/textView7"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/u3"/>
+                 <!--   <LinearLayout
+                        android:id="@+id/u"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#009999"
+                        android:orientation="vertical"
+                        android:layout_below="@+id/textView7"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true">
+
+                        <Switch
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rMorning_txt"
+                            android:id="@+id/morningSwitch"
+                            android:checked="false"
+                            android:showText="true"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true" />
+
+                        <Switch
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rNight_txt"
+                            android:id="@+id/nightSwitch"
+                            android:checked="false"
+                            android:showText="true"
+                            android:layout_below="@+id/morningSwitch"
+                            android:layout_alignLeft="@+id/morningSwitch"
+                            android:layout_alignStart="@+id/morningSwitch"
+                            android:layout_alignRight="@+id/morningSwitch"
+                            android:layout_alignEnd="@+id/morningSwitch" />
+
+                        <Switch
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rRandom_txt"
+                            android:id="@+id/randomSwitch"
+                            android:checked="false"
+                            android:showText="true"
+                            android:layout_below="@+id/nightSwitch"
+                            android:layout_alignLeft="@+id/nightSwitch"
+                            android:layout_alignStart="@+id/nightSwitch"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true" />
+
+                        <Switch
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rDate_txt"
+                            android:id="@+id/importantSwitch"
+                            android:checked="false"
+                            android:showText="true"
+                            android:layout_below="@+id/randomSwitch"
+                            android:layout_alignLeft="@+id/nightSwitch"
+                            android:layout_alignStart="@+id/nightSwitch"
+                            android:layout_alignRight="@+id/randomSwitch"
+                            android:layout_alignEnd="@+id/randomSwitch" />
+                    </LinearLayout>
+-->
+
+                </RelativeLayout>
+
+                <!--          TAB 2 CONTENT                   -->
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Large Text"
+                        android:id="@+id/textView1tb2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Large Text"
+                        android:id="@+id/textView2tb2"
+                        android:layout_below="@+id/textView1tb2"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Large Text"
+                        android:id="@+id/textView4tb2"
+                        android:layout_below="@+id/textView3tb2"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Large Text"
+                        android:id="@+id/textView5tb2"
+                        android:layout_below="@+id/textView4tb2"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Large Text"
+                        android:id="@+id/textView6tb2"
+                        android:layout_below="@+id/textView5tb2"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <LinearLayout
+                        android:id="@+id/u4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#009999"
+                        android:orientation="vertical"
+                        android:layout_below="@+id/textView7"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true">
+
+                        <Switch
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rMorning_txt"
+                            android:id="@+id/morningSwitch2"
+                            android:checked="false"
+                            android:showText="true"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true" />
+
+                        <Switch
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rNight_txt"
+                            android:id="@+id/nightSwitch2"
+                            android:checked="false"
+                            android:showText="true"
+                            android:layout_below="@+id/morningSwitch"
+                            android:layout_alignLeft="@+id/morningSwitch"
+                            android:layout_alignStart="@+id/morningSwitch"
+                            android:layout_alignRight="@+id/morningSwitch"
+                            android:layout_alignEnd="@+id/morningSwitch" />
+
+                        <Switch
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rRandom_txt"
+                            android:id="@+id/randomSwitch2"
+                            android:checked="false"
+                            android:showText="true"
+                            android:layout_below="@+id/nightSwitch"
+                            android:layout_alignLeft="@+id/nightSwitch"
+                            android:layout_alignStart="@+id/nightSwitch"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true" />
+
+                        <Switch
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rDate_txt"
+                            android:id="@+id/importantSwitch2"
+                            android:checked="false"
+                            android:showText="true"
+                            android:layout_below="@+id/randomSwitch"
+                            android:layout_alignLeft="@+id/nightSwitch"
+                            android:layout_alignStart="@+id/nightSwitch"
+                            android:layout_alignRight="@+id/randomSwitch"
+                            android:layout_alignEnd="@+id/randomSwitch" />
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Edit Information in Form"
+                        android:layout_gravity="center"
+                        android:id="@+id/submitBtn_tb2"
+                        android:layout_below="@+id/textView6tb2"
+                        android:layout_marginTop="129dp" />
+
+
+
+                </LinearLayout>
+
+                <!--          TAB 3 CONTENT                   -->
+                <LinearLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#5b89ff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="@string/dDialog1"
+                        android:id="@+id/textViewtb3"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email Developers!"
+                        android:layout_gravity="center"
+                        android:id="@+id/emailBtn_tb3"
+                        android:layout_below="@+id/textView6tb2"
+                        android:layout_marginTop="69dp" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+    <ViewAnimator
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewAnimator"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="431dp"
+        android:layout_marginStart="431dp"
+        android:layout_marginBottom="172dp" />
+
+    </RelativeLayout>
+</ScrollView>

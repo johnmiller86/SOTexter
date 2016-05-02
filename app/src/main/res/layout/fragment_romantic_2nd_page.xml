@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="#ffffff">
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:layout_marginTop="@dimen/frag_space_questions"
+        android:ems="10"
+        android:hint="@string/rQuestion4"
+        android:id="@+id/ques4_editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/button2"
+        android:layout_toLeftOf="@+id/button2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:digits="0123456789+"
+        android:layout_marginTop="@dimen/frag_space_questions"
+        android:hint="@string/rQuestion5"
+        android:id="@+id/ques5_editText"
+        android:layout_below="@+id/ques4_editText"
+        android:layout_alignLeft="@+id/ques4_editText"
+        android:layout_alignStart="@+id/ques4_editText"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_toStartOf="@+id/button2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/rQuestion8"
+        android:id="@+id/textView2"
+        android:textSize="16dp"
+        android:layout_below="@+id/rQuestion7_editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_marginTop="@dimen/frag_space_questions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rMorning_txt"
+        android:id="@+id/morning_checkBox"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rNight_txt"
+        android:id="@+id/night_checkBox"
+        android:layout_alignTop="@+id/morning_checkBox"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rRandom_txt"
+        android:id="@+id/random_checkBox"
+        android:layout_below="@+id/night_checkBox"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rDate_txt"
+        android:id="@+id/importantDate_checkBox"
+        android:layout_alignTop="@+id/random_checkBox"
+        android:layout_alignLeft="@+id/night_checkBox"
+        android:layout_alignStart="@+id/night_checkBox"
+        android:checked="false" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/rQuestion6"
+        android:id="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ques5_editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/rQuestion6_editText"
+        android:hint="MM/DD/YYYY Format Please"
+        android:text=""
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/button3"
+        android:layout_toStartOf="@+id/button3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/rQuestion7"
+        android:id="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rQuestion6_editText"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/rQuestion7_editText"
+        android:text=""
+        android:hint="MM/DD/YYYY Format Please"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/button4"
+        android:layout_toLeftOf="@+id/button4" />
+
+    <ImageButton
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/contacts_icon"
+        android:background="@null"
+        android:onClick="chooseContact"
+        android:layout_alignTop="@+id/ques4_editText"
+        android:layout_alignRight="@+id/night_checkBox"
+        android:layout_alignEnd="@+id/night_checkBox" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:layout_alignBottom="@+id/rQuestion6_editText"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/calendar_icon"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2"
+        android:onClick="chooseAnniversary" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/rQuestion6_editText"
+        android:layout_toEndOf="@+id/rQuestion6_editText"
+        android:layout_above="@+id/textView2"
+        android:layout_below="@+id/textView4"
+        android:background="@drawable/calendar_icon"
+        android:onClick="chooseBirthday" />
+
+
+</RelativeLayout>

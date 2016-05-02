@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <!-- bla bla bla-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/gQuestion1"
+            android:id="@+id/scheduleQuestion1_textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/gQuestion2"
+            android:id="@+id/scheduleQuestion2_textView"
+            android:layout_below="@+id/morning_timePicker"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TimePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:id="@+id/morning_timePicker"
+            android:layout_below="@+id/scheduleQuestion1_textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TimePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:id="@+id/night_timePicker"
+            android:layout_below="@+id/scheduleQuestion2_textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submitBtn"
+            android:id="@+id/button"
+            android:layout_below="@+id/night_timePicker"
+            android:layout_alignRight="@+id/night_timePicker"
+            android:layout_alignEnd="@+id/night_timePicker" />
+
+    </RelativeLayout>
+</ScrollView>

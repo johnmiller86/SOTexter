@@ -1,0 +1,33 @@
+Two SharedPreference Files:
+
+"MyPrefs":
+is1stPagefilledK (bool)
+isFormFilledK (bool)
+isDatingK (bool)
+genderK (String)
+textEnabledK (bool)
+
+is2ndPageFilledK (bool)
+nameK (String)
+numberK (String)
+birthdayK (String)
+anniversaryK (String)
+morningEnabledK (bool)
+nightEnabledK (bool)
+randomEnabledK (bool)
+importantEnabledK (bool)
+nextMorningK (String)
+nextNightK(String)
+
+
+
+
+
+**********************************************
+
+"UserSchedulePrefs":
+morningScheduleK (String)
+nightScheduleK (String)
+
+**********************************************
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    tools:context="com.twh5257_jdm5908_zsw5029_ick5008_bw.ist402.so_texter.FirstLaunchActivity"
+    android:background="#ffffff"
+    android:id="@+id/relativeLayout">
+
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitStart"
+        android:adjustViewBounds="true"
+        android:id="@+id/bannerImg"
+        android:src="@drawable/banner2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#ffffff"
+        android:minHeight="40dp" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="false">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_row="0"
+            android:id="@+id/fragmentContainer"
+            android:layout_column="0"
+            android:layout_above="@+id/prevBtn"></FrameLayout>
+    </ScrollView>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/prevBtn"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text="@string/previousBtn"
+            android:layout_alignTop="@+id/nextBtn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nextBtn"
+        android:id="@+id/nextBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="34dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submitBtn"
+        android:id="@+id/submitBtn"
+        android:layout_alignTop="@+id/prevBtn"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

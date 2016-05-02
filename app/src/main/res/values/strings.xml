@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">Significant Other Texter</string>
+    <string name="pref_previously_started">false</string>
+    <string name="previousBtn">Previous</string>
+    <string name="nextBtn">Next</string>
+    <string name="submitBtn">Submit</string>
+
+
+    <string name="rQuestion1">Are you dating anyone?</string>
+    <string name="rQuestion2">What is the gender of your partner?</string>
+    <string name="rQuestion3">Do you want to send autotexts to them?</string>
+    <string name="rQuestion4">What is their name?</string>
+    <string name="rQuestion5">What is their phone number?</string>
+    <string name="rQuestion6">When were you two official?</string>
+    <string name="rQuestion7">When is their birthday?</string>
+    <string name="rQuestion8">Check the Following if you want to auto-send them the following: </string>
+
+
+    <string name="fQuestion1">Do you have a family or are you Batman?</string>
+    <string name="fQuestion2">Check the Following of Following Members you want to auto-text: </string>
+    <string name="fQuestion3">What is their phone numbers?</string>
+    <string name="fQuestion4">Check the Following if you want to auto-send them the following:</string>
+
+    <string name="gQuestion1">What time do you usually wake up?</string>
+    <string name="gQuestion2">What time do you usually sleep?</string>
+    <string name="gQuestion3">Do you go to work?</string>
+
+    <!--Answers-->
+    <string name="yes_string">Yes</string>
+    <string name="no_string">No</string>
+    <string name="boy_string">Boy</string>
+    <string name="girl_string">Girl</string>
+    <string name="other_string">Other</string>
+
+    <!--Type of Romantic Texts-->
+    <string name="rMorning_txt">Good Morning Texts</string>
+    <string name="rNight_txt">Good Night Texts</string>
+    <string name="rRandom_txt">Random Sweet Texts</string>
+    <string name="rDate_txt">Important Dates Texts</string>
+    <string name="rObscene_txt">Dirty Texts</string>
+
+    <!--Dashboard Dialogs-->
+    <string name="dialogLine1">You\'ve been with NAMEHERE since ANNIVERSARYHERE!  Niceeee.  Just remember, their birthday is on BIRTHDAYHERE.</string>
+    <string name="ALTERNATIVEdialogLine1">You are currently not dating anyone.  Enjoy your freedom.</string>
+    <string name="dialogLine2">Next Morning Txt: MORNINGTIME</string>
+    <string name="dialogLine3">Next Night Txt: NIGHTTIME</string>
+    <string name="dialogLine4">Next Random Txt: RANDOMTIME</string>
+    <string name="dialogLine5">Next Important Txt: IMPORTANTTIME</string>
+    <string name="dialogLine6">For more controls, go over to the control tab!</string>
+
+    <!--Settings Dialog-->
+    <string name="cDialog1">You are: ISDATINGHERE</string>
+    <string name="cDialog2">Your partner is named: NAMEHERE</string>
+    <string name="cDialog3">They identify with: GENDERHERE</string>
+    <string name="cDialog4">You have been with NAMEHERE since: ANNIVERSARYHERE</string>
+    <string name="cDialog5">GENDERHERE birthday is on: BIRTHDAYHERE</string>
+    <string name="cDialog6">GENDERHERE phone number is: PHONENUMBERHERE</string>
+
+    <!--Email developers-->
+    <string name="dDialog1">Hello!  Group 0 Here!  This app is still very much in beta due to the abundance amount of coding and potential to make the app smarter.  Feel free to contact
+    us developers via Email with a touch of a button below for any bugs!  (Yes we need free QA testers)  In return, we will give you respect and street creds. for your time.  DANKE!!</string>
+
+    <string-array name="month_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <!-- Permissions Dialogs -->
+    <string name="cancel">Cancel</string>
+    <string name="allow">Allow</string>
+    <string name="settings">Settings</string>
+
+</resources>
