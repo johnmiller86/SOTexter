@@ -1,9 +1,25 @@
 package questionFragments;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -14,34 +30,32 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
-
-import java.util.Calendar;
+import android.widget.Toast;
 
 import com.twh5257_jdm5908_zsw5029_ick5008_bw.ist402.so_texter.R;
+
+import java.util.Calendar;
 
 /**
  * @author Tisay Huynh && John D. Miller
  * @version 1.0.2
  * @since 05/02/2016
  */
-public class RomanticQuestionsFragment_page2  extends Fragment{
+public class RomanticQuestionsFragment_page2  extends Fragment implements View.OnClickListener{
 
-    // TODO Make these EditTexts public statics
-    public static EditText question4;
-    public static EditText question5;
-    public static EditText question6;
-    public static EditText question7;
-
-    private CheckBox morningCB;
-    private CheckBox nightCB;
-    private CheckBox randomCB;
+    // UI Components
+    private EditText question4, question5;
+    private static EditText question6, question7;
+    private CheckBox morningCB, nightCB, randomCB;
     private CheckBox importantCB;
+    private ImageButton chooseContactButton;
+    private Button anniversaryButton, birthdayButton;
     private View view;
 
-
+    // Global/Instance Variables
     private String mName;
     private String mNumber;
     private String mAnniversary;
@@ -52,13 +66,11 @@ public class RomanticQuestionsFragment_page2  extends Fragment{
     private Boolean mImportantEnabled;
     private Boolean mIs2ndPageFilled;
 
-    // TODO Add to Tisa's version
-    public static ImageButton chooseContactButton;
-    public static Button anniversaryButton, birthdayButton;
-
+    // Calendar
     private Calendar mSystemCalendar;
     private int mSystemYear;
 
+    // Shared Prefs
     private SharedPreferences mSharedPreference;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String key_is2ndPageFilled = "is2ndPageFilledK";
@@ -70,6 +82,18 @@ public class RomanticQuestionsFragment_page2  extends Fragment{
     public static final String key_nightEnabled = "nightEnabledK";
     public static final String key_randomEnabled = "randomEnabledK";
     public static final String key_importantEnabled = "importantEnabledK";
+
+    // Permissions requests
+    private static final int REQUEST_PERMISSION = 1;
+    private static final int PERMISSION__READ_CONTACTS = 2;
+
+    // Contact Variables
+    private Uri contact;
+    private String contactId, contactNumber;
+
+    // Calendar variables
+    private static boolean anniversaryButtonClicked = false;
+    private static boolean birthdayButtonClicked = false;
 
 
     private String blockCharacterSet = "*+#-.";
@@ -113,8 +137,6 @@ public class RomanticQuestionsFragment_page2  extends Fragment{
         nightCB = (CheckBox)view.findViewById(R.id.night_checkBox);
         randomCB = (CheckBox)view.findViewById(R.id.random_checkBox);
         importantCB = (CheckBox)view.findViewById(R.id.importantDate_checkBox);
-
-        //TODO add to Tisa's version
         chooseContactButton = (ImageButton) view.findViewById(R.id.button2);
         anniversaryButton = (Button) view.findViewById(R.id.button3);
         birthdayButton = (Button) view.findViewById(R.id.button4);
@@ -126,6 +148,11 @@ public class RomanticQuestionsFragment_page2  extends Fragment{
         question6.setFilters(new InputFilter[]{filter});
         question7.addTextChangedListener(question7TextWatcher);
         question7.setFilters(new InputFilter[]{filter});
+
+        // Adding button listeners
+        chooseContactButton.setOnClickListener(this);
+        birthdayButton.setOnClickListener(this);
+        anniversaryButton.setOnClickListener(this);
 
         mSystemCalendar = Calendar.getInstance();
         mSystemYear = mSystemCalendar.get(Calendar.YEAR);
@@ -142,7 +169,37 @@ public class RomanticQuestionsFragment_page2  extends Fragment{
         mIs2ndPageFilled=false;
 
     }
+    // Button Listener
+    @Override
+    public void onClick(View view){
+        DialogFragment dialogFragment;
+        switch (view.getId()){
+            case R.id.button2:
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_CONTACTS}, PERMISSION__READ_CONTACTS);
+                }else{
+                    startActivityForResult(new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI), REQUEST_PERMISSION);
+                }
 
+                break;
+            case R.id.button3:
+                // This button was clicked
+                anniversaryButtonClicked = true;
+
+                // Opening Fragment
+                dialogFragment = new DatePickerFragment();
+                dialogFragment.show(getFragmentManager(), "datePicker");
+                break;
+            case R.id.button4:
+                // This button was clicked
+                birthdayButtonClicked = true;
+
+                // Opening Fragment
+                dialogFragment = new DatePickerFragment();
+                dialogFragment.show(getFragmentManager(), "datePicker");
+                break;
+        }
+    }
 
     private final TextWatcher question4TextWatcher = new TextWatcher() {
         @Override
@@ -182,7 +239,8 @@ public class RomanticQuestionsFragment_page2  extends Fragment{
             }
             else if(temp.length() == 0){
                 // Filled by contact picker no error
-            }else{
+            }
+            else{
                 // Set error not 10 digits
                 question5.setError("Valid phone number format is 10 digits. You entered: "+temp.length());
             }
@@ -431,4 +489,206 @@ public class RomanticQuestionsFragment_page2  extends Fragment{
          }
     }
 
+    /**
+     * Handles operations based on permission results.
+     * @param requestCode the request code.
+     * @param permissions the result code.
+     * @param grantResults the grant results array.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults){
+        switch (requestCode){
+            case PERMISSION__READ_CONTACTS: {
+                // Granted
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    startActivityForResult(new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI), REQUEST_PERMISSION);
+                }
+                // Blocked
+                else if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.READ_CONTACTS)){
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Permission was blocked!")
+                            .setMessage("You have previously blocked this app from accessing contacts. This feature will not function without this access. Would you like to go to settings and allow this permission?")
+
+                            // Open Settings button
+                            .setPositiveButton(R.string.settings, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    goToSettings();
+                                }
+                            })
+
+                            // Denied, close app
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    chooseContactButton.setEnabled(false);
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+                // Denied
+                else{
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Permission was denied!")
+                            .setMessage("This feature will not function without access to contacts. Would you like to allow access?")
+
+                            // Open Settings button
+                            .setPositiveButton(R.string.allow, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_CONTACTS}, PERMISSION__READ_CONTACTS);
+                                }
+                            })
+
+                            // Denied, close app
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    chooseContactButton.setEnabled(false);
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+                return;
+            }
+        }
+    }
+
+    /**
+     * Performs operations upon successful target selection.
+     * @param requestCode the request code.
+     * @param resultCode the result code.
+     * @param data the data returned from the Intent.
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_PERMISSION && resultCode == Activity.RESULT_OK){
+            contact = data.getData();
+            retrieveContactName();
+            retrieveContactNumber();
+        }
+    }
+
+    /**
+     * Gets the Contact's Name.
+     */
+    private void retrieveContactName() {
+
+        question4.setText("");
+
+        Cursor cursor = getActivity().getContentResolver().query(contact, null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()){
+            question4.setText(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)));
+            cursor.close();
+        }
+    }
+
+    /**
+     * Gets the Contact's Number.
+     */
+    private void retrieveContactNumber() {
+
+        question5.setText("");
+
+        contactNumber = null;
+
+        // Querying Contact ID
+        Cursor cursor = getActivity().getContentResolver().query(contact, new String[]{ContactsContract.Contacts._ID}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()){
+            contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            cursor.close();
+        }
+
+        // Retrieving Mobile Number
+        cursor = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER},
+                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ? AND " +
+                        ContactsContract.CommonDataKinds.Phone.TYPE + " = " +
+                        ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                new String[]{contactId}, null);
+
+        // Storing Mobile Number
+        if (cursor != null && cursor.moveToFirst()){
+            contactNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+            // Cleaning input
+            contactNumber = contactNumber.replaceAll("\\D+", "");
+
+            // Trim leading 1
+            if (contactNumber.length() > 10){
+                contactNumber = contactNumber.substring(1, 11);
+            }
+
+            // Setting Text
+            question5.setText(contactNumber);
+
+            // Closing Cursor
+            cursor.close();
+        }
+        if (contactNumber == null || contactNumber.equals("")){
+            Toast.makeText(getActivity(), "This contact has no associated mobile number!!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Opens the app's settings page in AppManager.
+     */
+    private void goToSettings(){
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, REQUEST_PERMISSION);
+    }
+
+    /**
+     * Inner Class to model a DatePickerFragment
+     */
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+
+            // Month is zero indexed, adjusting...
+            month += 1;
+
+            // Setting text
+            if (anniversaryButtonClicked) {
+                if (month < 10 && day < 10){
+                    question6.setText("0" + month + "/" + "0" + day + "/" + year);
+                }
+                else if (month < 10) {
+                    question6.setText("0" + month + "/" + day + "/" + year);
+                }
+                else if (day < 10){
+                    question6.setText(month + "/" + "0" + day + "/" + year);
+                }
+                anniversaryButtonClicked = false;
+            }
+            else if (birthdayButtonClicked) {
+                if (month < 10 && day < 10){
+                    question7.setText("0" + month + "/" + "0" + day + "/" + year);
+                }
+                else if (month < 10) {
+                    question7.setText("0" + month + "/" + day + "/" + year);
+                }
+                else if (day < 10){
+                    question7.setText(month + "/" + "0" + day + "/" + year);
+                }
+                birthdayButtonClicked = false;
+            }
+        }
+    }
 }

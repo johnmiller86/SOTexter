@@ -1,31 +1,25 @@
 package com.twh5257_jdm5908_zsw5029_ick5008_bw.ist402.so_texter;
 
 import android.Manifest;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
-import android.provider.ContactsContract;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ImageView;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -33,8 +27,6 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import java.util.Calendar;
 
 import questionFragments.RomanticQuestionsFragment_page1;
 import questionFragments.RomanticQuestionsFragment_page2;
@@ -105,21 +97,9 @@ public class FirstLaunchActivity extends AppCompatActivity {
     private String mNextNight;
     private String mNextRandom;
 
-    // TODO Add to Tisa's version
     // Permission requests
     private static final int REQUEST_PERMISSION = 1;
     private static final int PERMISSION_SEND_SMS = 2;
-    private static final int PERMISSION__READ_CONTACTS = 3;
-
-    // TODO Add to Tisa's version
-    private Uri contact;
-    private String contactId, contactNumber;
-
-    // TODO Add to Tisa's version
-    // Calendar variables
-    private static boolean anniversaryButtonClicked = false;
-    private static boolean birthdayButtonClicked = false;
-
 
     //test
     private RadioGroup group1;
@@ -140,7 +120,6 @@ public class FirstLaunchActivity extends AppCompatActivity {
         initialize();
         listeners();
 
-        // TODO Add this to Tisa's version
         //Requesting Marshmallow permissions to send text
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, PERMISSION_SEND_SMS);
 
@@ -429,45 +408,6 @@ public class FirstLaunchActivity extends AppCompatActivity {
         client.disconnect();
     }
 
-    // TODO Add to Tisa's Version
-    public void chooseContact(View view){
-
-        //Requesting Marshmallow permissions to read contacts
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, PERMISSION__READ_CONTACTS);
-    }
-
-    // TODO Add to Tisa's Version
-
-    /**
-     * Opens DatePickerFragment and sets text.
-     * @param view the button.
-     */
-    public void chooseAnniversary(View view){
-
-        // This button was clicked
-        anniversaryButtonClicked = true;
-
-        // Opening Fragment
-        DialogFragment dialogFragment = new DatePickerFragment();
-        dialogFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    // TODO Add to Tisa's Version
-    /**
-     * Opens DatePickerFragment and sets text.
-     * @param view the button.
-     */
-    public void chooseBirthday(View view){
-
-        // This button was clicked
-        birthdayButtonClicked = true;
-
-        // Opening Fragment
-        DialogFragment dialogFragment = new DatePickerFragment();
-        dialogFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    // TODO Add to Tisa's version
     /**
      * Handles operations based on permission results.
      * @param requestCode the request code.
@@ -477,58 +417,6 @@ public class FirstLaunchActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults){
         switch (requestCode){
-            case PERMISSION__READ_CONTACTS: {
-                // Granted
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    startActivityForResult(new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI), REQUEST_PERMISSION);
-                }
-                // Blocked
-                else if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)){
-                    new AlertDialog.Builder(this)
-                            .setTitle("Permission was blocked!")
-                            .setMessage("You have previously blocked this app from accessing contacts. This feature will not function without this access. Would you like to go to settings and allow this permission?")
-
-                            // Open Settings button
-                            .setPositiveButton(R.string.settings, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    goToSettings();
-                                }
-                            })
-
-                            // Denied, close app
-                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    RomanticQuestionsFragment_page2.chooseContactButton.setEnabled(false);
-                                }
-                            })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
-                }
-                // Denied
-                else{
-                    new AlertDialog.Builder(this)
-                            .setTitle("Permission was denied!")
-                            .setMessage("This feature will not function without access to contacts. Would you like to allow access?")
-
-                            // Open Settings button
-                            .setPositiveButton(R.string.allow, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    ActivityCompat.requestPermissions(FirstLaunchActivity.this, new String[]{Manifest.permission.READ_CONTACTS}, PERMISSION__READ_CONTACTS);
-                                }
-                            })
-
-                            // Denied, close app
-                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    RomanticQuestionsFragment_page2.chooseContactButton.setEnabled(false);
-                                }
-                            })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
-                }
-                return;
-            }
-
             case PERMISSION_SEND_SMS:{
                 // Granted
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
@@ -584,88 +472,6 @@ public class FirstLaunchActivity extends AppCompatActivity {
         }
     }
 
-    // TODO Add to Tisa's version
-    /**
-     * Performs operations upon successful target selection.
-     * @param requestCode the request code.
-     * @param resultCode the result code.
-     * @param data the data returned from the Intent.
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_PERMISSION && resultCode == RESULT_OK){
-            contact = data.getData();
-            retrieveContactName();
-            retrieveContactNumber();
-        }
-    }
-
-    // TODO Add to Tisa's version
-    /**
-     * Gets the Contact's Name.
-     */
-    private void retrieveContactName() {
-
-        RomanticQuestionsFragment_page2.question4.setText("");
-
-        Cursor cursor = getContentResolver().query(contact, null, null, null, null);
-
-        if (cursor != null && cursor.moveToFirst()){
-            RomanticQuestionsFragment_page2.question4.setText(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)));
-            cursor.close();
-        }
-    }
-
-    // TODO Add to Tisa's version
-    /**
-     * Gets the Contact's Number.
-     */
-    private void retrieveContactNumber() {
-
-        RomanticQuestionsFragment_page2.question5.setText("");
-
-        contactNumber = null;
-
-        // Querying Contact ID
-        Cursor cursor = getContentResolver().query(contact, new String[]{ContactsContract.Contacts._ID}, null, null, null);
-
-        if (cursor != null && cursor.moveToFirst()){
-            contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-            cursor.close();
-        }
-
-        // Retrieving Mobile Number
-        cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER},
-                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ? AND " +
-                        ContactsContract.CommonDataKinds.Phone.TYPE + " = " +
-                        ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
-                new String[]{contactId}, null);
-
-        // Storing Mobile Number
-        if (cursor != null && cursor.moveToFirst()){
-            contactNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-
-            // Cleaning input
-            contactNumber = contactNumber.replaceAll("\\D+", "");
-
-            // Trim leading 1
-            if (contactNumber.length() > 10){
-                contactNumber = contactNumber.substring(1, 11);
-            }
-
-            // Setting Text
-            RomanticQuestionsFragment_page2.question5.setText(contactNumber);
-
-            // Closing Cursor
-            cursor.close();
-        }
-        if (contactNumber == null || contactNumber.equals("")){
-            Toast.makeText(this, "This contact has no associated mobile number!!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    // TODO Add to Tisa's version
     /**
      * Opens the app's settings page in AppManager.
      */
@@ -674,57 +480,5 @@ public class FirstLaunchActivity extends AppCompatActivity {
         Uri uri = Uri.fromParts("package", getPackageName(), null);
         intent.setData(uri);
         startActivityForResult(intent, REQUEST_PERMISSION);
-    }
-
-    /**
-     * Inner Class to model a DatePickerFragment
-     */
-    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-
-        @NonNull
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-            // Use the current date as the default date in the picker
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-
-            // Month is zero indexed, adjusting...
-            month += 1;
-
-            // Setting text
-            if (anniversaryButtonClicked) {
-                if (month < 10 && day < 10){
-                    RomanticQuestionsFragment_page2.question6.setText("0" + month + "/" + "0" + day + "/" + year);
-                }
-                else if (month < 10) {
-                    RomanticQuestionsFragment_page2.question6.setText("0" + month + "/" + day + "/" + year);
-                }
-                else if (day < 10){
-                    RomanticQuestionsFragment_page2.question6.setText(month + "/" + "0" + day + "/" + year);
-                }
-                anniversaryButtonClicked = false;
-            }
-            else if (birthdayButtonClicked) {
-                if (month < 10 && day < 10){
-                    RomanticQuestionsFragment_page2.question7.setText("0" + month + "/" + "0" + day + "/" + year);
-                }
-                else if (month < 10) {
-                    RomanticQuestionsFragment_page2.question7.setText("0" + month + "/" + day + "/" + year);
-                }
-                else if (day < 10){
-                    RomanticQuestionsFragment_page2.question7.setText(month + "/" + "0" + day + "/" + year);
-                }
-                birthdayButtonClicked = false;
-            }
-        }
     }
 }
